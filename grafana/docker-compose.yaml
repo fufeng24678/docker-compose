@@ -12,6 +12,6 @@ services:
     network_mode: host
     volumes:
       - ./grafana:/var/lib/grafana/
-      - ./defaults.ini:/usr/share/grafana/conf/defaults.ini:ro
+      # - ./defaults.ini:/usr/share/grafana/conf/defaults.ini:ro
     # ports:
     #   - 3000:3000
