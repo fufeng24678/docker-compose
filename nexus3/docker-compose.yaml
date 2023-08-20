@@ -9,7 +9,12 @@ services:
         -Xmx1024m
         -XX:MaxDirectMemorySize=1024m
     ports:
+    # 默认 http 及 maven 仓库端口
     - 8081:8081
+    # docker 镜像仓库端口
+    - 8082:8082
+    # docker 镜像代理仓库端口
+    - 8083:8083
     volumes:
     - /usr/share/zoneinfo/Asia/Shanghai:/etc/localtime:ro
     - ./nexus-data:/nexus-data
