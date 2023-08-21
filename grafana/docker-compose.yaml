@@ -3,11 +3,11 @@ services:
   grafana:
     image: grafana/grafana:9.5.1
     restart: always
-    deploy:
-      resources:
-        limits:
-          cpus: "3"
-          memory: 300M
+    # deploy:
+    #   resources:
+    #     limits:
+    #       cpus: "3"
+    #       memory: 300M
     # 使用 host 模式方便使用 127.0.0.1 连接主机的其他服务
     network_mode: host
     volumes:
