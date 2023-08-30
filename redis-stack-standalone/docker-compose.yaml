@@ -1,0 +1,12 @@
+version: '3.8'
+services:
+  redis-stack-server:
+    image: redis/redis-stack-server:7.2.0-v0
+    restart: always
+    network_mode: host
+    # port:
+    # - 6379:6379
+    volumes:
+    - /usr/share/zoneinfo/Asia/Shanghai:/etc/localtime:ro
+    - ./redis-stack.conf:/etc/redis-stack.conf
+    - ./data:/data
