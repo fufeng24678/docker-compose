@@ -1,0 +1,23 @@
+version: '3.8'
+services:
+  kafka-ui:
+    image: provectuslabs/kafka-ui:b0583a3ca7d58bd9978e26a67bb8927fcbf03c42
+    restart: always
+    environment:
+      # 启用动态配置 ( 可以在 ui 界面配置 kafka 集群信息 )
+      DYNAMIC_CONFIG_ENABLED: "true"
+      SERVER_SERVLET_CONTEXT_PATH: /
+      # 登录安全设置
+      AUTH_TYPE: LOGIN_FORM
+      SPRING_SECURITY_USER_NAME: admin
+      SPRING_SECURITY_USER_PASSWORD: admin
+      # 预配置集群信息 ( 可以配置多个集群，只需要修改集群编号 0 即可 )
+      KAFKA_CLUSTERS_0_NAME: kafka-cluster-01
+      KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS: 10.11.12.60:9092,10.11.12.61:9092,10.11.12.62:9092
+    # 如果 kafka 使用主机名与各节点通信则必须使用 host 网络模式，否则无法在容器内识别外部
+    network_mode: host
+    # ports:
+    # - 8080:8080
+    volumes:
+    - /usr/share/zoneinfo/Asia/Shanghai:/etc/localtime:ro
+    - ./uploads:/etc/kafkaui/uploads
