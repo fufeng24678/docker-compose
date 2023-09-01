@@ -20,7 +20,7 @@ services:
       # Cluster
       - KAFKA_KRAFT_CLUSTER_ID=abcdefghijklmnopqrstuv
       # 设置 kafka 堆内存限制
-      - KAFKA_HEAP_OPTS=-Xmx1g
+      - KAFKA_HEAP_OPTS=-Xmx1g -Xms1g
     network_mode: host
     # ports:
     #   - 9092:9092
