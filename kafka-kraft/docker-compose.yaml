@@ -4,7 +4,7 @@ services:
     image: docker.io/bitnami/kafka:3.5
     restart: always
     environment:
-      # KRaft settings
+      # KRaft 配置
       # 每个节点的 NODE_ID 不同
       - KAFKA_CFG_NODE_ID=0
       - KAFKA_CFG_PROCESS_ROLES=controller,broker
@@ -19,8 +19,12 @@ services:
       - KAFKA_CFG_LISTENER_SECURITY_PROTOCOL_MAP=CONTROLLER:PLAINTEXT,PLAINTEXT:PLAINTEXT
       - KAFKA_CFG_CONTROLLER_LISTENER_NAMES=CONTROLLER
       - KAFKA_CFG_INTER_BROKER_LISTENER_NAME=PLAINTEXT
-      # Cluster
+      # 集群配置
       - KAFKA_KRAFT_CLUSTER_ID=abcdefghijklmnopqrstuv
+      # 自动创建 topic 的默认分区数和默认复制因子数
+      - KAFKA_CFG_AUTO_CREATE_TOPICS_ENABLE=true
+      - KAFKA_CFG_DEFAULT_REPLICATION_FACTOR=3
+      - KAFKA_CFG_NUM_PARTITIONS=3
       # 设置 kafka 堆内存限制
       - KAFKA_HEAP_OPTS=-Xmx1g -Xms1g
     network_mode: host
