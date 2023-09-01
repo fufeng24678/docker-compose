@@ -1,0 +1,29 @@
+version: '3.8'
+services:
+  kafka:
+    image: docker.io/bitnami/kafka:3.5
+    restart: always
+    environment:
+      # KRaft settings
+      # 每个节点的 NODE_ID 不同
+      - KAFKA_CFG_NODE_ID=0
+      - KAFKA_CFG_PROCESS_ROLES=controller,broker
+      # @后面可以是地址也可以是主机名
+      - KAFKA_CFG_CONTROLLER_QUORUM_VOTERS=0@10.11.12.60:9093,1@10.11.12.61:9093,2@10.11.12.62:9093
+      # Listeners
+      - KAFKA_CFG_LISTENERS=PLAINTEXT://:9092,CONTROLLER://:9093
+      - KAFKA_CFG_ADVERTISED_LISTENERS=PLAINTEXT://:9092
+      - KAFKA_CFG_LISTENER_SECURITY_PROTOCOL_MAP=CONTROLLER:PLAINTEXT,PLAINTEXT:PLAINTEXT
+      - KAFKA_CFG_CONTROLLER_LISTENER_NAMES=CONTROLLER
+      - KAFKA_CFG_INTER_BROKER_LISTENER_NAME=PLAINTEXT
+      # Cluster
+      - KAFKA_KRAFT_CLUSTER_ID=abcdefghijklmnopqrstuv
+      # 设置 kafka 堆内存限制
+      - KAFKA_HEAP_OPTS=-Xms100m -Xmx1g
+    network_mode: host
+    # ports:
+    #   - 9092:9092
+    #   - 9093:9093
+    volumes:
+      - ./kafka:/bitnami/kafka
+      - /usr/share/zoneinfo/Asia/Shanghai:/etc/localtime:ro
