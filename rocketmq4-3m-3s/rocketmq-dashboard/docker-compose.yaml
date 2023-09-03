@@ -1,0 +1,24 @@
+version: '3.8'
+services:
+  rocketmq-dashboard:
+    image: apacherocketmq/rocketmq-dashboard:1.0.0
+    restart: always
+    environment:
+      JAVA_OPTS: >-
+        -Drocketmq.namesrv.addr=10.11.12.57:9876;10.11.12.58:9876;10.11.12.59:9876
+        -Dcom.rocketmq.sendMessageWithVIPChannel=false
+        -Xms100m -Xmx256m
+    ports:
+    - 8080:8080
+    # ulimits:
+    #   nofile:
+    #     hard: 1000000
+    #     soft: 1000000
+    #   nproc:
+    #     hard: -1
+    #     soft: -1
+    volumes:
+    - /usr/share/zoneinfo/Asia/Shanghai:/etc/localtime:ro
+    - ./application.properties:/application.properties
+    - ./users.properties:/users.properties
+    - ./tmp:/tmp

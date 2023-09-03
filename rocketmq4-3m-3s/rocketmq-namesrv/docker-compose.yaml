@@ -1,0 +1,16 @@
+version: '3.8'
+services:
+  rocketmq-namesrv:
+    image: apache/rocketmq:4.9.7
+    command: 
+    - sh
+    - mqnamesrv
+    restart: always
+    environment:
+      JAVA_OPT_EXT: -Xms256m -Xmx1g
+    network_mode: host
+    # ports:
+    # - 9876:9876
+    volumes:
+    - /usr/share/zoneinfo/Asia/Shanghai:/etc/localtime:ro
+    - ./logs:/home/rocketmq/logs
