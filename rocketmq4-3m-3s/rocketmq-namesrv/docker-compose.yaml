@@ -7,10 +7,10 @@ services:
     - mqnamesrv
     restart: always
     environment:
-      JAVA_OPT_EXT: -Xms256m -Xmx1g
+      JAVA_OPT_EXT: -Xms256m -Xmx512m
     network_mode: host
     # ports:
     # - 9876:9876
     volumes:
     - /usr/share/zoneinfo/Asia/Shanghai:/etc/localtime:ro
-    - ./logs:/home/rocketmq/logs
+    - ./rocketmq/logs:/home/rocketmq/logs
