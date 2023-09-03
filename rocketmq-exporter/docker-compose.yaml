@@ -1,0 +1,13 @@
+version: '3.8'
+services:
+  rocketmq-exporter:
+    image: fufeng24678/rocketmq-exporter:latest
+    command: 
+    - --rocketmq.config.namesrvAddr="10.11.12.57:9876;10.11.12.58:9876;10.11.12.59:9876"
+    - --rocketmq.config.rocketmqVersion=4_9_7
+    restart: always
+    network_mode: host
+    # ports:
+    # - 5557:5557
+    volumes:
+    - /usr/share/zoneinfo/Asia/Shanghai:/etc/localtime:ro
