@@ -4,7 +4,7 @@ services:
     image: fufeng24678/rocketmq-exporter:latest
     command: 
     - --rocketmq.config.namesrvAddr="10.11.12.57:9876;10.11.12.58:9876;10.11.12.59:9876"
-    - --rocketmq.config.rocketmqVersion=4_9_7
+    - --rocketmq.config.rocketmqVersion=5_1_3
     restart: always
     network_mode: host
     # ports:
