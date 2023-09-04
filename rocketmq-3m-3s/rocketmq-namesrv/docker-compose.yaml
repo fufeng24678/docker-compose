@@ -1,8 +1,8 @@
 version: '3.8'
 services:
   rocketmq-namesrv:
-    # image: apache/rocketmq:4.9.7
-    image: apache/rocketmq:5.1.3
+    image: apache/rocketmq:4.9.7
+    # image: apache/rocketmq:5.1.3
     command: 
     - sh
     - mqnamesrv
